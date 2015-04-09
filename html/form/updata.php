@@ -13,36 +13,36 @@ require ("class/toten.class.php");
 require ("class/errControl.php");
 require ("class/utility.php");
 
-$name = $_POST["namae"];
+$Name = filter_input(INPUT_POST,'namae');
 $name_obj = new name();
-$name =  $name_obj->bunnki($name);
+$name =  $name_obj->bunnki($Name);
 
-$denwa = $_POST["denwa"];
+$Denwa = filter_input(INPUT_POST,'denwa');
 $denwa_obj = new denwa();
-$denwa = $denwa_obj->suuji($denwa);
+$denwa = $denwa_obj->suuji($Denwa);
 
-$mail = $_POST["mail"];
+$Mail = filter_input(INPUT_POST,'mail');
 $mail_obj = new mail();
-$mail = $mail_obj->bunnki($mail);
+$mail = $mail_obj->bunnki($Mail);
 
-$day = $_POST["monthDay"];
+$Day = filter_input(INPUT_POST,'day');
 $day_obj = new day;
-$day = $day_obj->DAY($day);
+$day = $day_obj->DAY($Day);
 
-$time = $_POST["time"];  
+$Time = filter_input(INPUT_POST,'time'); 
 $time_obj = new time();
-$time = $time_obj->TIME($time);    
+$time = $time_obj->TIME($Time);    
 
-$seki = $_POST["seki"];
+$Seki = filter_input(INPUT_POST,'seki');
 $seki_obj = new seki();
-$seki = $seki_obj->SEKI($seki);
+$seki = $seki_obj->SEKI($Seki);
 
-$toten = $_POST["toten"];
+$Toten = filter_input(INPUT_POST,'toten');
 $toten_obj = new toten();
-$toten = $toten_obj->TOTEN($toten);
+$toten = $toten_obj->TOTEN($Toten);
 
-$data = $_POST["id"];
-$data = htmlentities($data, ENT_QUOTES, "UTF-8");
+$data = filter_input(INPUT_POST,'id');
+
 
 $utility_obj = new utility();
 $utility_obj -> htmlentity($name);
@@ -52,21 +52,22 @@ $utility_obj -> htmlentity($day);
 $utility_obj -> htmlentity($time);
 $utility_obj -> htmlentity($seki);
 $utility_obj -> htmlentity($toten);
+$utility_obj -> htmlentity($data);
 
 $errControl_obj = new errControl();
 
 $con = mysqli_connect('localhost', 'master', 'yurina');
 $errControl_obj -> errMySQLcon($con);
 
-$result = mysqli_select_db( $con, 'reserve');
-$errControl_obj -> errMySQLchoose($result);
+$result_choose = mysqli_select_db( $con, 'reserve');
+$errControl_obj -> errMySQLchoose($result_choose);
 
-$result = mysqli_query( $con, 'SET NAMES utf8');
-$errControl_obj -> errMySQLcode($result);
+$result_code = mysqli_query( $con, 'SET NAMES utf8');
+$errControl_obj -> errMySQLcode($result_code);
 
-$result = mysqli_query($con, "INSERT INTO reserve( name, denwa, mail, day, time, seki, toten) VALUES('$name', '$denwa', '$mail', '$day', '$time', '$seki', '$toten')");
-$errControl_obj -> errMySQLregister($result);
+$result_register = mysqli_query($con, "INSERT INTO reserve( name, denwa, mail, day, time, seki, toten) VALUES('".mysqli_real_escape_string($name)."', '".mysqli_real_escape_string($denwa)."', '".mysqli_real_escape_string($mail)."', '".mysqli_real_escape_string($day)."', '".mysqli_real_escape_string($time)."', '".mysqli_real_escape_string($seki)."','".mysqli_real_escape_string($toten)."')");
+$errControl_obj -> errMySQLregister($result_register);
 
-$result = mysqli_close($con);
+$result_close = mysqli_close($con);
 $errControl_obj -> errMySQLclose($result);
 ?>

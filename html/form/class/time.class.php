@@ -8,7 +8,7 @@ class time{
         } 
         else{
             return $this->word_time2 ;
-            }
+        }
         }
 }
 ?>

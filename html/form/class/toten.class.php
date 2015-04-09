@@ -19,7 +19,7 @@ class toten{
         case 4:
             return $this->word4;
             break;
-    }
+        }
     }
 }
 ?>

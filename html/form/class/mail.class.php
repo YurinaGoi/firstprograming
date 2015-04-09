@@ -11,11 +11,12 @@ class mail{
         }
     }
     public function check($name1){
-    if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$name1 )) {
-        return $this->nyuryoku(1, $name1);
-    } else {
-        return $this->nyuryoku(0,$name1);
-    }
+        if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$name1 )) {
+            return $this->nyuryoku(1, $name1);
+        } 
+        else {
+            return $this->nyuryoku(0,$name1);
+        }
     }
 
     public function nyuryoku($aaa, $name){

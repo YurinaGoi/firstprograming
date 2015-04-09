@@ -27,13 +27,15 @@ ini_set( 'display_errors', 1);
                 <td bgcolor="#DCF0F0">電話番号:</td>
                 <td><?php
                      echo $denwa;  
-                     ?></td>
+                     ?>
+                </td>
             </tr>
              <tr>
                 <td bgcolor="#DCF0F0">メールアドレス:</td>
                 <td><?php
                      echo $mail;  
-                     ?></td>
+                     ?>
+                </td>
             </tr>
             <tr>
                 <td bgcolor="#DCF0F0">予約日時:</td>

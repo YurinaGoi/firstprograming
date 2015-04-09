@@ -16,7 +16,8 @@ ini_set( 'display_errors', 1);
   
         <table>
             <tr>
-                <td bgcolor="#DCF0F0">名前:</td>
+                <td bgcolor="#DCF0F0">名前:
+                </td>
                 <td>
                     <?php
                     echo $name;
@@ -24,26 +25,31 @@ ini_set( 'display_errors', 1);
                 </td>
             </tr>
             <tr>
-                <td bgcolor="#DCF0F0">電話番号:</td>
+                <td bgcolor="#DCF0F0">電話番号:
+                </td>
                 <td><?php
                      echo $denwa;  
-                     ?></td>
+                     ?>
+                </td>
             </tr>
              <tr>
                 <td bgcolor="#DCF0F0">メールアドレス:</td>
                 <td><?php
                      echo $mail;  
-                     ?></td>
+                     ?>
+                </td>
             </tr>
             <tr>
-                <td bgcolor="#DCF0F0">予約日時:</td>
+                <td bgcolor="#DCF0F0">予約日時:
+                </td>
                 <td>
                     <?php
                     echo $day," ",$time;
                     ?>
                 </td>
             </tr>
-            <td bgcolor="#DCF0F0">席のご希望:</td>
+            <td bgcolor="#DCF0F0">席のご希望:
+            </td>
             <td>
                 <?php
                 echo $seki;
@@ -51,7 +57,8 @@ ini_set( 'display_errors', 1);
             </td>
         </tr>            
         <tr>
-            <td bgcolor="#DCF0F0"> 当店をおしりになったきっかけ:</td>
+            <td bgcolor="#DCF0F0"> 当店をおしりになったきっかけ:
+            </td>
             <td>
                 <?php
                 echo $toten;
