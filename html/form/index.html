@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ディナーショー</title>
+    </head>
+<body>
+ディナーショー
+<form method="post" action="reservehyoji.php">
+    <table>
+        <tr>
+            <td bgcolor="#DCF0F0">名前:</td>
+            <td><input type="text" name="namae" size="30" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#DCF0F0">電話番号:</td>
+            <td><input type="text" name="denwa" size="30" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#DCF0F0">メールアドレス:</td>
+            <td><input type="text" name="mail" size="30" maxlength="30"><td/>
+        </tr>
+        <tr>
+            <td bgcolor="#DCF0F0">予約日時:</td>
+            <td>
+                <select name="monthDay">
+                    <option value="1">2015-12-24
+                    <option value="2" >2015-12-25
+                </select>
+                <select name="time">
+                    <option value="1 ">18:00
+                    <option value="2" selected> 20:00
+                </select>
+            </td>
+        </tr>
+        <td bgcolor="#DCF0F0">席のご希望:</td>
+        <td>
+            <input type="radio" name="seki" value="0">禁煙席
+            <input type="radio" name="seki" value="1" checked>喫煙席
+        </td>
+        </tr>            
+        <tr>
+            <td bgcolor="#DCF0F0"> 当店をおしりになったきっかけ:</td>
+            <td>
+                <input type="checkbox" name="toten" value="1" checked>ウェブサイト
+                <input type="checkbox" name="toten" value="2">検索サイト
+                <input type="checkbox" name="toten" value="3">雑誌
+                <input type="checkbox" name="toten" value="4">知人
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" name="mode" value="123">
+            </td>
+            <td>
+                <input type="submit" value="予約する">
+                <input type="reset" value="入力し直す">
+            </td>
+        </tr>
+        </table>
+</form>
+</body>
+</html>
