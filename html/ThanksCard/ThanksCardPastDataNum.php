@@ -12,16 +12,14 @@ $utility_obj -> htmlentity($max_number_ppl);
 //データベースにアクセス
 $errControl_obj = new errControl();
 
-$con = mysqli_connect('localhost', 'master', 'yurina');
+$con = new mysqli('localhost', 'master', 'yurina');
 $errControl_obj -> errMySQLcon($con);
 
-$result = mysqli_select_db( $con, 'thankscard');
+$result =  $con->select_db('thankscard');
 $errControl_obj -> errMySQLchoose($result);
 
-$result = mysqli_query( $con, 'SET NAMES utf8');
+$result =  $con->query('SET NAMES utf8');
 $errControl_obj -> errMySQLcode($result);
-
-
 ?>
 <html>
     <head>
@@ -48,32 +46,52 @@ $errControl_obj -> errMySQLcode($result);
                 </td>
             </tr>
              <?php
-             $Pastdata = mysqli_query($con, 'select * from pastdata');
-             $Staff = mysqli_query($con, 'select * from staff');
-             $staff = mysqli_fetch_array($Staff);
-             $pastdata=mysqli_fetch_array($Pastdata);
-             $num = 0;
-             //１ループで１行データが取り出され、データが無くなるとループを抜けます。
-            while ($pastdata){
-                $num++;
-                 while($staff['name']){
+            $data = $con->query('select * from pastdata');
+            $name = $con->query('select * from staff');
+            $numberdata = $con->query('select * from num_data');
+            $num = 0;
+            $num_data = $numberdata->fetch_array();
+           
+             //idに1から500までの数をインサート
+            /*while ($num <=2000){
+                $num++; 
+                if($num%4 == 1){
+                $id = floor($num/4) + 1;
+                $result = $con->query("INSERT INTO num_data(id) VALUES( '".$con->real_escape_string($id)."')");
+                var_dump("INSERT INTO num_data(id) VALUES( '".$con->real_escape_string($id)."')");
+            }*/
+            while($pastdata = $data->fetch_array()){
+            $num++; 
+                //$id = floor($num/4) + 1;
+            var_dump($num);
+                while($staff = $name->fetch_array()){
                     if($pastdata['name1'] == $staff['name']){
-                        $result = mysqli_query($con, "INSERT INTO num_data(name1) VALUES('".mysqli_real_escape_string($staff['id'])."')");
+                    $result = $con->query("UPDATE thankscard.num_data SET name1 =".$con->real_escape_string($staff['id'])." where id =".$num." ");
+                    var_dump("UPDATE thankscard.num_data SET name1 =".$con->real_escape_string($staff['id'])." where id =".$num);
+                     }
+                    else{
+                        if($pastdata['name2'] == $staff['name']){
+                        $result = $con->query("UPDATE thankscard.num_data SET name2 =".$con->real_escape_string($staff['id'])." where id =".$num."");
+                        }
+                        else{        
+                            if($pastdata['name3'] == $staff['name']){
+                            $result = $con->query("UPDATE thankscard.num_data SET name3 =".$con->real_escape_string($staff['id'])." where id =".$num."");
+                            }  
+                        }
                     }
-                    if($pastdata['name2'] == $staff['name']){
-                        $result = mysqli_query($con, "INSERT INTO num_data(name2) VALUES('".mysqli_real_escape_string($staff['id'])."')");
-                    }
-                    if($pastdata['name3'] == $staff['name']){
-                        $result = mysqli_query($con, "INSERT INTO num_data(name3) VALUES('".mysqli_real_escape_string($staff['id'])."')");
-                    } 
-                 }
-                 $result = mysqli_query($con, "INSERT INTO num_data(id) VALUES('".mysqli_real_escape_string($num)."')");
             }
-
-                                $errControl_obj -> errMySQLregister($result);
-$result = mysqli_close($con);
-$errControl_obj -> errMySQLclose($result);
-?>
-
-
-
+            }
+            while ($num_data = $numberdata->fetch_array()){
+                    echo "<td>". $num_data['id']."</td>";
+                    echo "<td>" . $num_data['name1']."</td>";
+                    echo "<td>" . $num_data['name2']."</td>";
+                    echo "<td>" . $num_data['name3']."</td>";
+                    echo "</tr>";
+            }
+            $errControl_obj -> errMySQLregister($result);
+            $result = mysqli_close($con);
+            $errControl_obj -> errMySQLclose($result);
+            ?>
+            </table>
+    </body>
+</html>

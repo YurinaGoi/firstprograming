@@ -46,7 +46,7 @@ $pastdata = mysqli_query($con, 'select* from pastdata');
                 </td>
             </tr>
              <?php
-             $result = mysqli_query($con, 'select * from pastdata');
+            $result = mysqli_query($con, 'select * from pastdata');
              
              //１ループで１行データが取り出され、データが無くなるとループを抜けます。
                 while ($pastdata = mysqli_fetch_array($result)){
@@ -54,7 +54,7 @@ $pastdata = mysqli_query($con, 'select* from pastdata');
                     echo "<td>". $pastdata['id']."</td>";
                     echo "<td>" . $pastdata['name1']."</td>";
                     echo "<td>" . $pastdata['name2']."</td>";
-                    echo "<td>" . $pastdata['name2']."</td>";
+                    echo "<td>" . $pastdata['name3']."</td>";
                 echo "</tr>";
                 }
                 echo "</table>";
