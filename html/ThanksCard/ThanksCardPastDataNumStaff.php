@@ -15,7 +15,6 @@ $result = mysqli_query( $con, 'SET NAMES utf8');
 $errControl_obj -> errMySQLcode($result);
 
 
-
 $result = mysqli_query($con, "INSERT INTO thankscard( name, denwa, mail, day, time, seki, toten) VALUES('".mysqli_real_escape_string($name)."', '".mysqli_real_escape_string($denwa)."', '".mysqli_real_escape_string($mail)."', '".mysqli_real_escape_string($day)."', '".mysqli_real_escape_string($time)."', '".mysqli_real_escape_string($seki)."','".mysqli_real_escape_string($toten)."')");
 $errControl_obj -> errMySQLregister($result);
 
